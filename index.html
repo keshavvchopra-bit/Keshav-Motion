@@ -74,14 +74,16 @@ body {
 }
 
 /* ====================== INTRO SCREEN ====================== */
-#intro-screen {
+#intro-screen { 
+  pointer-events:auto;
   position:fixed; inset:0; z-index:9500;
   background:var(--bg);
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   overflow:hidden;
   transition:opacity 1.4s var(--ease-slow), transform 1.4s var(--ease-slow);
 }
-#intro-screen.exit {
+#intro-screen.exit { 
+  pointer-events:none;
   opacity:0; transform:scale(1.05); pointer-events:none;
 }
 
@@ -166,7 +168,7 @@ body {
   border:1px solid rgba(200,164,106,0.28); background:transparent;
   color:var(--accent); font-family:'DM Sans',sans-serif;
   font-size:10px; letter-spacing:0.35em; text-transform:uppercase; font-weight:400;
-  cursor:default; position:relative; z-index:1;
+  cursor:auto !important; position:relative; z-index:1;
   opacity:0; animation:slideUp 1s var(--ease) 2.6s forwards;
   transition:background 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
   border-radius:40px;
@@ -788,8 +790,7 @@ footer {
 <div class="grain"></div>
 
 <!-- ====================== CURSOR ====================== -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+
 
 <!-- ====================== INTRO SCREEN ====================== -->
 <div id="intro-screen">
@@ -1159,7 +1160,7 @@ const introEnterBtn = document.getElementById('introEnterBtn');
 let introExited = false;
 
 // Lock scroll immediately — before anything else loads
-document.body.style.overflow = 'hidden';
+document.body.style.overflow = '';
 
 function exitIntro() {
   if (introExited) return;
